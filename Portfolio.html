@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Deep - Portfolio</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4b5563;
+            --light: #f3f4f6;
+            --dark: #111827;
+            --accent: #8b5cf6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .profile-img svg {
+            width: 60%;
+            height: 60%;
+            fill: #9ca3af;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary-dark);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .summary-points {
+            margin-top: 1rem;
+            padding-left: 1.25rem;
+        }
+        
+        .summary-points li {
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            flex-basis: calc(50% - 1rem);
+            min-width: 300px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-pill {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 180px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-image svg {
+            width: 30%;
+            height: 30%;
+            fill: #9ca3af;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tag {
+            background-color: var(--light);
+            color: var(--secondary);
+            padding: 0.2rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+        }
+        
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary);
+        }
+        
+        .education-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+        
+        .education-period {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-school {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-location {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+        
+        /* Certifications Section */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cert-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cert-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-issuer {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-date {
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon svg {
+            width: 50%;
+            height: 50%;
+            fill: white;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-value {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+        
+        .contact-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .skill-category {
+                flex-basis: 100%;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <div class="profile-img">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                </svg>
+            </div>
+            
+            <div class="profile-info">
+                <h1>Ayush Deep</h1>
+                <h2>Information Technology Student</h2>
+                
+                <div class="contact-info">
+                    <a href="mailto:ayushdeep004@gmail.com">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
+                        </svg>
+                        ayushdeep004@gmail.com
+                    </a>
+                    <a href="tel:+918092810015">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z" fill="currentColor"/>
+                        </svg>
+                        +91-8092810015
+                    </a>
+                    <a href="https://linkedin.com/in/ayush-deep-81a48a288" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 12.116 14.907 11.872 14.663 11.872C14.419 11.872 13.605 12.035 13.605 13.174C13.605 13.337 13.605 17 13.605 17H11.082V10H13.605V10.977C13.93 10.407 14.581 10 15.802 10C17.023 10 18 10.977 18 13.174V17Z" fill="currentColor"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="#">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
+                        </svg>
+                        Ranchi, Jharkhand
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am an Information Technology student at Manipal University Jaipur, currently in my 3rd year of B.Tech. My passion lies in exploring the ever-evolving world of technology and applying my skills to create practical solutions.</p>
+                    
+                    <ul class="summary-points">
+                        <li>Currently studying Information Technology at Manipal University with a strong academic record (CGPA: 8.56).</li>
+                        <li>Driven to learn quickly, advance computer proficiency and training in industry operations.</li>
+                        <li>Solid background in field and office settings supporting team needs.</li>
+                        <li>Flexible and hardworking team player focused on boosting productivity and performance with conscientious and detail-oriented approaches.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">HTML5</span>
+                        <span class="skill-pill">CSS3</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">Next.js</span>
+                        <span class="skill-pill">AngularJS</span>
+                        <span class="skill-pill">Vue.js</span>
+                        <span class="skill-pill">React.js</span>
+                        <span class="skill-pill">Bootstrap</span>
+                        <span class="skill-pill">PHP</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">C</span>
+                        <span class="skill-pill">C++</span>
+                        <span class="skill-pill">Java</span>
+                        <span class="skill-pill">Python</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">Google Cloud</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">GitHub</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">MySQL</span>
+                        <span class="skill-pill">Excel</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">English</span>
+                        <span class="skill-pill">Hindi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path>
+                        </svg>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">GameTracker - Web-Based Sports Information Platform</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML5</span>
+                            <span class="project-tag">CSS3</span>
+                            <span class="project-tag">Flexbox</span>
+                            <span class="project-tag">Grid</span>
+                            <span class="project-tag">Responsive Design</span>
+                            <span class="project-tag">Git</span>
+                            <span class="project-tag">VS Code</span>
+                        </div>
+                        <p>Developed a responsive and user-friendly front-end website that delivers real-time sports information including live scores, sports categories, and featured articles. The platform prioritizes clean design, clear information hierarchy, and accessibility across all devices. Employed semantic HTML and component-based CSS architecture to ensure maintainability and future scalability.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.5,22C11.64,22 11.77,21.97 11.9,21.9C12.55,21.5 19,17.4 19,11.58C19,7.5 16.42,4 11.5,4C6.58,4 4,7.5 4,11.58C4,17.4 10.45,21.5 11.1,21.9C11.23,21.97 11.36,22 11.5,22M11.5,6C15.5,6 17,8.5 17,11.58C17,15.08 13.57,18.12 11.5,19.5C9.43,18.12 6,15.08 6,11.58C6,8.5 7.5,6 11.5,6M11.5,8C9.57,8 8,9.57 8,11.5C8,13.43 9.57,15 11.5,15C13.43,15 15,13.43 15,11.5C15,9.57 13.43,8 11.5,8M11.5,10C12.33,10 13,10.67 13,11.5C13,12.33 12.33,13 11.5,13C10.67,13 10,12.33 10,11.5C10,10.67 10.67,10 11.5,10Z"></path>
+                        </svg>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Image Resizing and Format Conversion using AWS</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">AWS Lambda</span>
+                            <span class="project-tag">S3</span>
+                            <span class="project-tag">API Gateway</span>
+                            <span class="project-tag">Python (Pillow)</span>
+                            <span class="project-tag">Serverless Architecture</span>
+                        </div>
+                        <p>Developed a cloud-based, serverless solution for automated image resizing and format conversion using AWS. The system allows users to upload images via a web interface or API, processes the images using AWS Lambda, and stores the output in S3 with public access links. Designed for scalability, automation, and performance optimization with minimal operational overhead.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-period">2023 - 2027 (Expected)</div>
+                    <div class="education-degree">Bachelor of Technology - Information Technology, CGPA: 8.56</div>
+                    <div class="education-school">Manipal University Jaipur</div>
+                    <div class="education-location">Jaipur, Rajasthan</div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-period">2022</div>
+                    <div class="education-degree">12th Grade, Percentage: 84.6%</div>
+                    <div class="education-school">DAV Kapil Dev Public School</div>
+                    <div class="education-location">Ranchi, Jharkhand</div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-period">2020</div>
+                    <div class="education-degree">10th Grade, Percentage: 91.2%</div>
+                    <div class="education-school">DAV Kapil Dev Public School</div>
+                    <div class="education-location">Ranchi, Jharkhand</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certs-grid">
+                <div class="cert-card">
+                    <h3 class="cert-title">Google Cloud: Prompt Design in Vertex AI</h3>
+                    <div class="cert-issuer">Google Cloud</div>
+                    <div class="cert-date">May 2024</div>
+                </div>
+                
+                <div class="cert-card">
+                    <h3 class="cert-title">Google Cloud: Introduction to Generative AI</h3>
+                    <div class="cert-issuer">Google Cloud</div>
+                    <div class="cert-date">May 2024</div>
+                </div>
+                
+                <div class="cert-card">
+                    <h3 class="cert-title">Google Cloud: Develop GenAI Apps with Gemini and Streamlit</h3>
+                    <div class="cert-issuer">Google Cloud</div>
+                    <div class="cert-date">May 2024</div>
+                </div>
+                
+                <div class="cert-card">
+                    <h3 class="cert-title">Red Hat System Administration I (RH124 - RHA)</h3>
+                    <div class="cert-issuer">RedHat</div>
+                    <div class="cert-date">April 2025</div>
+                </div>
+                
+                <div class="cert-card">
+                    <h3 class="cert-title">Red Hat System Administration II (RH134 - RHA)</h3>
+                    <div class="cert-issuer">RedHat</div>
+                    <div class="cert-date">April 2025</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2
